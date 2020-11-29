@@ -5,18 +5,27 @@
     type: '{{ prd_type }}'
     
   tasks:
+   - name: check dir
+      stat:
+        path: '/root/station_list/{{ stationId }}'
+      register: my_folder
+  
     - name: create directory
       shell: 'cp -r /root/station_list/org_code/ /root/station_list/{{ stationId }}'  
       register: result
+      when: my_folder.stat.exists == false
     
     - name: '결과를 출력합니다.'
       debug: var=result.stdout.split('\n')
+      when: my_folder.stat.exists == false
       
     - name: run python code
       shell: 'nohup python -u parse_land.py {{ stationId }} {{ type }} > nohup.out 2>&1 &' 
       args: 
         chdir: '/root/station_list/{{ stationId }}'
       register: result
+      when: my_folder.stat.exists == false
 
     - name: '결과를 출력합니다.'
       debug: var=result.stdout.split('\n')
+      when: my_folder.stat.exists == false
