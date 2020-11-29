@@ -5,7 +5,7 @@
     type: '{{ prd_type }}'
     
   tasks:
-   - name: check dir
+    - name: check dir
       stat:
         path: '/root/station_list/{{ stationId }}'
       register: my_folder
