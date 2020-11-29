@@ -1,9 +1,22 @@
-- name: Hello World Sample
+- name: run python code
   hosts: python
+  vars:
+    stationId: {{ station_id }}
+    type: {{ prd_type }}
+    
   tasks:
-    - name: Hello Message
-      shell: 'ls -al /root'  
+    - name: create directory
+      shell: 'cp -r /root/station_list/org_code/ /root/station_list/{{ stationId }}'  
       register: result
     
-    - name: '20. /etc/hosts 내용을 출력합니다.'
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+      
+    - name: run python code
+      shell: 'python parse_land.py {{ stationId }} {{ type }}' 
+      args: 
+        chdir: /root/station_list/{{ stationId }}
+      register: result
+
+    - name: '결과를 출력합니다.'
       debug: var=result.stdout.split('\n')
