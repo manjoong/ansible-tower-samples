@@ -1,8 +1,8 @@
 - name: run python code
   hosts: python
   vars:
-    stationId: {{ station_id }}
-    type: {{ prd_type }}
+    stationId: '{{ station_id }}'
+    type: '{{ prd_type }}'
     
   tasks:
     - name: create directory
@@ -15,7 +15,7 @@
     - name: run python code
       shell: 'python parse_land.py {{ stationId }} {{ type }}' 
       args: 
-        chdir: /root/station_list/{{ stationId }}
+        chdir: '/root/station_list/{{ stationId }}'
       register: result
 
     - name: '결과를 출력합니다.'
