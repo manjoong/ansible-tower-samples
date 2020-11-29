@@ -2,5 +2,8 @@
   hosts: python
   tasks:
     - name: Hello Message
-      command: ls -al /root
-
+      shell: 'ls -al /root'  
+      register: result
+    
+    - name: '20. /etc/hosts 내용을 출력합니다.'
+      debug: var=result.stdout.split('\n')
