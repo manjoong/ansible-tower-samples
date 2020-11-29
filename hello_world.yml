@@ -2,6 +2,5 @@
   hosts: python
   tasks:
     - name: Hello Message
-      debug:
-        msg: "Hello World!"
+      command: ls -al /root
 
