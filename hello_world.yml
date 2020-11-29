@@ -13,7 +13,7 @@
       debug: var=result.stdout.split('\n')
       
     - name: run python code
-      shell: 'python parse_land.py {{ stationId }} {{ type }}' 
+      shell: 'nohup python parse_land.py {{ stationId }} {{ type }} &' 
       args: 
         chdir: '/root/station_list/{{ stationId }}'
       register: result
