@@ -7,11 +7,11 @@
   tasks:
     - name: check dir
       stat:
-        path: '/root/station_list/{{ stationId }}'
+        path: '/root/station_list/{{ stationId }}_{{ type }}'
       register: my_folder
   
     - name: create directory
-      shell: 'cp -r /root/station_list/org_code/ /root/station_list/{{ stationId }}'  
+      shell: 'cp -r /root/station_list/org_code/ /root/station_list/{{ stationId }}_{{ type }}'  
       register: result
       when: my_folder.stat.exists == false
     
@@ -22,7 +22,7 @@
     - name: run python code
       shell: 'nohup python -u parse_land.py {{ stationId }} {{ type }} > nohup.out 2>&1 &' 
       args: 
-        chdir: '/root/station_list/{{ stationId }}'
+        chdir: '/root/station_list/{{ stationId }}_{{ type }}'
       register: result
       when: my_folder.stat.exists == false
 
