@@ -57,4 +57,3 @@
 
     - name: '결과를 출력합니다.'
       debug: var=result.stdout.split('\n')
-      when: my_folder.stat.exists == false
