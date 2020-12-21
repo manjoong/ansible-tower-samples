@@ -6,7 +6,15 @@
     
   tasks:
     - name: kill proccess
-      shell: echo $(ps ax | grep python | awk '{print $1}' | xargs kill)
+      shell: echo $(ps ax | grep OPST | awk '{print $1}' | xargs kill)
+      register: result
+      ignore_errors: yes
+    - name: kill proccess
+      shell: echo $(ps ax | grep APT | awk '{print $1}' | xargs kill)
+      register: result
+      ignore_errors: yes
+    - name: kill proccess
+      shell: echo $(ps ax | grep OR | awk '{print $1}' | xargs kill)
       register: result
       ignore_errors: yes
 
