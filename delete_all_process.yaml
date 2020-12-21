@@ -6,7 +6,7 @@
     
   tasks:
     - name: kill proccess
-      shell: 'ps ax | grep python | awk '{print $1}' | xargs kill' 
+      shell: "ps ax | grep python | awk '\{print $1\}' | xargs kill"
       register: result
 
     - name: '결과를 출력합니다.'
