@@ -8,6 +8,7 @@
     - name: kill proccess
       shell: echo $(ps ax | grep python | awk '{print $1}' | xargs kill)
       register: result
+      ignore_errors: yes
 
     - name: '결과를 출력합니다.'
       debug: var=result.stdout.split('\n')
