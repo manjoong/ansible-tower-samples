@@ -1,0 +1,51 @@
+- name: delete_all_code
+  hosts: python
+  # vars:
+  #   stationId: '{{ station_id }}'
+  #   type: '{{ prd_type }}'
+    
+  tasks:
+    - name: kill proccess
+      shell: 'ps ax | grep python | awk '{print $1}' | xargs kill' 
+      register: result
+
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+     
+  
+    - name: delete directory OPST
+      shell: 'rm -rf *_OPST'  
+      register: result
+      args: 
+        chdir: '/root/station_list'
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+    
+      
+    - name: delete directory APT
+      shell: 'rm -rf *_APT'  
+      register: result
+      args: 
+        chdir: '/root/station_list'
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+      
+    - name: delete directory OR
+      shell: 'rm -rf *_OR'  
+      register: result
+      args: 
+        chdir: '/root/station_list'
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+      
+      
+    - name: que.txt 새로 제작
+      shell: 'touch que.txt' 
+      args: 
+        chdir: '/root'
+      register: result
+
+
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+      when: my_folder.stat.exists == false
