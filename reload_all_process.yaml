@@ -1,0 +1,14 @@
+- name: create_all_process
+  hosts: python
+
+  tasks:
+    - name: create proccess
+      shell: reload_all_process.py
+      args: 
+        chdir: '/root'
+      register: result
+
+
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+     
