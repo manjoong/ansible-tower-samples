@@ -3,7 +3,7 @@
 
   tasks:
     - name: create proccess
-      shell: reload_all_process.py
+      shell: python reload_all_process.py
       args: 
         chdir: '/root'
       register: result
