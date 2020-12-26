@@ -7,6 +7,9 @@
       args: 
         chdir: '/root'
       register: result
+    
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
 
 
     - name: kill proccess
@@ -14,13 +17,17 @@
       register: result
       ignore_errors: yes
     
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+    
     - name: run infiniti python code
       shell: 'nohup python -u check_infiniti_loop.py > nohup.out 2>&1 &' 
       args: 
         chdir: '/root'
       register: result
 
-
     - name: '결과를 출력합니다.'
       debug: var=result.stdout.split('\n')
+
+
      
