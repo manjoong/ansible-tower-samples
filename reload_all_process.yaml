@@ -9,6 +9,18 @@
       register: result
 
 
+    - name: kill proccess
+      shell: echo $(ps ax | grep check_infiniti_loop.py | awk '{print $1}' | xargs kill)
+      register: result
+      ignore_errors: yes
+    
+    - name: run infiniti python code
+      shell: 'nohup python -u check_infiniti_loop.py > nohup.out 2>&1 &' 
+      args: 
+        chdir: '/root'
+      register: result
+
+
     - name: '결과를 출력합니다.'
       debug: var=result.stdout.split('\n')
      
