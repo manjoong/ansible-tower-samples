@@ -62,3 +62,12 @@
 
     - name: '결과를 출력합니다.'
       debug: var=result.stdout.split('\n')
+      
+    - name: que.txt 새로 제작
+      shell: 'systemctl restart tor' 
+      register: result
+
+
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+      
