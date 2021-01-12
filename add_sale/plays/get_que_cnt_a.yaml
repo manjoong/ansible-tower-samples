@@ -1,6 +1,6 @@
 - name: run python code
   # hosts: python_a
-  hosts: {% for item in node %}{{ item }}{% endfor %}
+  hosts: '{% for item in node %}{{ item }}{% endfor %}'
   vars:
     min_cnt: "{{ min_cnt }}"
   
