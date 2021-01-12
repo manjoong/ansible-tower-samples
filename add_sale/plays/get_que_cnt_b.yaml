@@ -25,7 +25,7 @@
         - set_fact:
             cnt: "{{ cnt_b.stdout }}"
         
-      when: exists == "false"
+      when: exists == false
 
     # - name: '결과를 출력합니다.'
     #   debug: var=cnt
