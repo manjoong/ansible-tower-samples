@@ -17,6 +17,7 @@
     - hostvars['python_c']['exists'] == false
 
 - import_playbook: ./plays/add_sale.yaml
+  ignore_errors: yes
   when: 
     - hostvars['python_a']['exists'] == false
     - hostvars['python_b']['exists'] == false
