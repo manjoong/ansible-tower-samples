@@ -1,8 +1,14 @@
 - import_playbook: ./plays/get_que_cnt_a.yaml
+
 - import_playbook: ./plays/get_que_cnt_b.yaml
+  when: hostvars['python_a']['exists'] == "false"
+
 - import_playbook: ./plays/get_que_cnt_c.yaml
+  when: hostvars['python_a']['exists'] }} == "false" and hostvars['python_b']['exists'] }} == "false"
 
 - import_playbook: ./plays/select_node.yaml
+  when: hostvars['python_a']['exists'] }} == "false" and hostvars['python_b']['exists'] }} == "false" and hostvars['python_c']['exists'] }} == "false"
 
 - import_playbook: ./plays/add_sale.yaml
+  when: hostvars['python_a']['exists'] }} == "false" and hostvars['python_b']['exists'] }} == "false" and hostvars['python_c']['exists'] }} == "false"
 

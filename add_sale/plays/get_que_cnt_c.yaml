@@ -1,17 +1,28 @@
 - name: run python code
   hosts: python_c
     
-  vars:
-    min_cnt: "{{ min_cnt }}"
+
   
   tasks:
-    - name: get que count
-      shell: 'cat que.txt |wc -l'  
-      register: cnt_c
-    
-
+    - name: check dir
+      stat:
+        path: '/root/station_list/{{ stationId }}_{{ type }}'
+      register: my_folder
+  
     - set_fact:
-        cnt: "{{ cnt_c.stdout }}"
+        exists: "{{ my_folder.stat.exists }}"
+
+
+    - name: Play cat que len
+      block:
+        - name: get que count
+          shell: 'cat que.txt |wc -l'  
+          register: cnt_c
+
+        - set_fact:
+            cnt: "{{ cnt_c.stdout }}"
+        
+      when: exists == "false"
 
     # - name: '결과를 출력합니다.'
     #   debug: var=cnt
