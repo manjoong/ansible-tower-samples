@@ -41,9 +41,17 @@
         nodes: "{{ nodes|default([]) + [ {'node': 'python_c', 'que_len': cnt_c} ] }}"
 
 
-    - name: "python_c의 que 값"
+    - name: "nodes의 값"
       debug:
         var: nodes
+
+    # - name: "python_c의 que 값"
+    #   debug:
+    #     var: '{%max_value = max(nodes, key=nodes.que_len) %}'
+
+    - name: "최솟값을 가진 노드입니다."
+      debug:
+      msg: "{{ (nodes |sort(attribute='que_len'))[0]['node'] }}"
     
 
 

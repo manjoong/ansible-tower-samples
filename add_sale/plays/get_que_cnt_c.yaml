@@ -13,8 +13,8 @@
     - set_fact:
         cnt: "{{ cnt_c.stdout }}"
 
-    - name: '결과를 출력합니다.'
-      debug: var=cnt
+    # - name: '결과를 출력합니다.'
+    #   debug: var=cnt
 
 
 #     - name: '현재 저장된 최소값입니다.'

@@ -13,8 +13,9 @@
     - set_fact:
         cnt: "{{ cnt_a.stdout }}"
 
-    - name: '결과를 출력합니다.'
-      debug: var=cnt
+    # - name: '결과를 출력합니다.'
+    #   debug: var=cnt
+
 
 
 
