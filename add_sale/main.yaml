@@ -1,4 +1,6 @@
 - import_playbook: ./plays/get_que_cnt_a.yaml
 
 - import_playbook: ./plays/add_sale.yaml
+  vars: 
+    cnt_a : "{{ cnt_a }}"
 
