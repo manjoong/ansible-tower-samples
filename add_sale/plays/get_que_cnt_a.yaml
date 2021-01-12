@@ -6,6 +6,10 @@
       shell: 'cat que.txt |wc -l'  
       register: cnt_a
     
+
+    - set_fact:
+      cnt_a: cnt_a.stdout
+
     - name: '결과를 출력합니다.'
       debug: var=cnt_a.stdout
       
