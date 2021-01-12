@@ -11,16 +11,9 @@
         path: '/root/station_list/{{ stationId }}_{{ type }}'
       register: my_folder
 
-    - name: "my_folder값"
-      debug:
-        var: my_folder.stat.exists
-  
     - set_fact:
         exists: "{{ my_folder.stat.exists }}"
 
-    - name: "my_folder값"
-      debug:
-        var: exists
 
 
     - name: Play cat que len

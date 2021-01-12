@@ -1,5 +1,5 @@
 - name: run python code
-  hosts: "{{ hostvars['localhost']['min node'] }}"
+  hosts: "{{ hostvars['localhost']['min_node'] }}"
   vars:
     stationId: '{{ station_id }}'
     type: '{{ prd_type }}'
