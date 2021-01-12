@@ -6,7 +6,7 @@
     
   tasks:
     - name: '다시한번 결과를 출력합니다.'
-      debug: var=cnt_a
+      debug: var=min_cnt
     # - name: check dir
     #   stat:
     #     path: '/root/station_list/{{ stationId }}_{{ type }}'
