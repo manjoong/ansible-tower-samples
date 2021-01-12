@@ -18,6 +18,10 @@
     - set_fact:
         exists: "{{ my_folder.stat.exists }}"
 
+    - name: "my_folder값"
+      debug:
+        var: exists
+
 
     - name: Play cat que len
       block:
