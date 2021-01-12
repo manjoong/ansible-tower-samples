@@ -1,8 +1,6 @@
 - name: run python code
   hosts: localhost
-  vars:
-    stationId: '{{ station_id }}'
-    type: '{{ prd_type }}'
+
     
   tasks:
     - name: "python_a의 que 값"

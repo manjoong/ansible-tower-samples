@@ -1,6 +1,8 @@
 - name: run python code
   hosts: python_a
-  # hosts: '{% for item in node %}{{ item }}{% endfor %}'
+  vars:
+    stationId: '{{ station_id }}'
+    type: '{{ prd_type }}'  
 
   
   tasks:
