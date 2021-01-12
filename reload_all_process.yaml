@@ -12,6 +12,9 @@
       debug: var=result.stdout.split('\n')
 
 
+- name: reload check_infiniti_loop
+  hosts: all
+  tasks:
     - name: kill proccess
       shell: echo $(ps ax | grep check_infiniti_loop.py | awk '{print $1}' | xargs kill)
       register: result
