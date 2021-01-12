@@ -1,6 +1,8 @@
 - name: run python code
   hosts: python_a
-    
+  vars:
+    min_cnt: "{{ min_cnt }}"
+  
   tasks:
     - name: get que count
       shell: 'cat que.txt |wc -l'  
