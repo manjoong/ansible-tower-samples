@@ -1,0 +1,11 @@
+- name: run python code
+  hosts: python_a
+    
+  tasks:
+    - name: get que count
+      shell: 'cat que.txt |wc -l'  
+      register: cnt_a
+    
+    - name: '결과를 출력합니다.'
+      debug: var=cnt_a.stdout
+      
