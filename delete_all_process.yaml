@@ -1,5 +1,5 @@
 - name: delete_all_code
-  hosts: python
+  hosts: all
   # vars:
   #   stationId: '{{ station_id }}'
   #   type: '{{ prd_type }}'
