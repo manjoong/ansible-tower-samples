@@ -9,14 +9,45 @@
       debug:
         var: hostvars['python_a']['cnt']
 
+    - set_fact:
+        cnt_a: "{{ hostvars['python_a']['cnt'] }}"
+
+    - name: "딕셔너리 추가"
+      set_fact:
+        nodes: "{{ nodes|default([]) + [ {'node': 'python_a', 'que_len': cnt_a} ] }}"
+
+
     - name: "python_b의 que 값"
       debug:
         var: hostvars['python_b']['cnt']
+
+    - set_fact:
+        cnt_b: "{{ hostvars['python_b']['cnt'] }}"
+
+
+    - name: "딕셔너리 추가"
+      set_fact:
+        nodes: "{{ nodes|default([]) + [ {'node': 'python_b', 'que_len': cnt_b} ] }}"
 
     - name: "python_c의 que 값"
       debug:
         var: hostvars['python_c']['cnt']
 
+    - set_fact:
+        cnt_c: "{{ hostvars['python_c']['cnt'] }}"
+
+    - name: "딕셔너리 추가"
+      set_fact:
+        nodes: "{{ nodes|default([]) + [ {'node': 'python_c', 'que_len': cnt_c} ] }}"
+
+
+    - name: "python_c의 que 값"
+      debug:
+        var: nodes
+    
+
+
+# "{% for key, value in dict_item.items() %}Key: {{key}} Value: {{value}}\n{% endfor %}"
     # - name: check dir
     #   stat:
     #     path: '/root/station_list/{{ stationId }}_{{ type }}'
