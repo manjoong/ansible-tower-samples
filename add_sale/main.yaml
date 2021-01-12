@@ -1,5 +1,6 @@
 - import_playbook: ./plays/get_que_cnt_a.yaml
 
+
 - import_playbook: ./plays/get_que_cnt_b.yaml
   when: 
     - hostvars['python_a']['exists'] == "false"
