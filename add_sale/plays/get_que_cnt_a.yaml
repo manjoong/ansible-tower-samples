@@ -19,7 +19,7 @@
       debug: var=min_cnt
 
     - set_fact:
-        min_cnt: "{{ cnt_a.stdout }}"
+        min_cnt: "{{ cnt_a }}"
 
 #     - name: '현재 저장된 최소값입니다.'
 #       debug: var=min_cnt
