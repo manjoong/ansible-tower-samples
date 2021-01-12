@@ -3,17 +3,12 @@
   vars:
     stationId: '{{ station_id }}'
     type: '{{ prd_type }}'
-    min_cnt: "{{ min_cnt }}"
     
   tasks:
-    - name: '다시한번 결과를 출력합니다.'
-      debug: var=min_cnt
-
-
-
-    - name: Show ansible_facts
+    - name: "python_a의 최소 값"
       debug:
         var: hostvars['python_a']['cnt_a']
+
     # - name: check dir
     #   stat:
     #     path: '/root/station_list/{{ stationId }}_{{ type }}'
