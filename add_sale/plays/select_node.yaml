@@ -36,7 +36,7 @@
 
     - name: "딕셔너리 추가"
       set_fact:
-        nodes: "{{ nodes|default([]) + [ {'node': 'python_c', 'que_len': cnt_c} ] }}"
+        nodes: "{{ nodes|default([]) + [ {'node': 'python_c', 'que_len': cnt_c|int} ] }}"
 
 
     - name: "nodes의 값"
