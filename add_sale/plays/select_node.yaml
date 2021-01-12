@@ -12,7 +12,7 @@
 
     - name: "딕셔너리 추가"
       set_fact:
-        nodes: "{{ nodes|default([]) + [ {'node': 'python_a', 'que_len': cnt_a} ] }}"
+        nodes: "{{ nodes|default([]) + [ {'node': 'python_a', 'que_len': cnt_a|int} ] }}"
 
 
     - name: "python_b의 que 값"
@@ -25,7 +25,7 @@
 
     - name: "딕셔너리 추가"
       set_fact:
-        nodes: "{{ nodes|default([]) + [ {'node': 'python_b', 'que_len': cnt_b} ] }}"
+        nodes: "{{ nodes|default([]) + [ {'node': 'python_b', 'que_len': cnt_b|int} ] }}"
 
     - name: "python_c의 que 값"
       debug:
