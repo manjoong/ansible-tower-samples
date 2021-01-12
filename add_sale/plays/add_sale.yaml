@@ -8,6 +8,12 @@
   tasks:
     - name: '다시한번 결과를 출력합니다.'
       debug: var=min_cnt
+
+
+
+    - name: Show ansible_facts
+      debug:
+        var: hostvars['python_a']['cnt_a']
     # - name: check dir
     #   stat:
     #     path: '/root/station_list/{{ stationId }}_{{ type }}'
