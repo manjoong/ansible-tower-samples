@@ -1,31 +1,27 @@
 - name: run python code
-  hosts: python
+  hosts: python_c
+    
   vars:
-    stationId: '{{ station_id }}'
-    type: '{{ prd_type }}'
-    
-  tasks:
-    - name: check dir
-      stat:
-        path: '/root/station_list/{{ stationId }}_{{ type }}'
-      register: my_folder
+    min_cnt: "{{ min_cnt }}"
   
-    - name: create directory
-      shell: 'cp -r /root/station_list/org_code/ /root/station_list/{{ stationId }}_{{ type }}'  
-      register: result
-      when: my_folder.stat.exists == false
+  tasks:
+    - name: get que count
+      shell: 'cat que.txt |wc -l'  
+      register: cnt_c
     
-    - name: '결과를 출력합니다.'
-      debug: var=result.stdout.split('\n')
-      when: my_folder.stat.exists == false
-      
-    - name: run python code
-      shell: 'nohup python -u parse_land.py {{ stationId }} {{ type }} > nohup.out 2>&1 &' 
-      args: 
-        chdir: '/root/station_list/{{ stationId }}_{{ type }}'
-      register: result
-      when: my_folder.stat.exists == false
+
+    - set_fact:
+        cnt: "{{ cnt_c.stdout }}"
 
     - name: '결과를 출력합니다.'
-      debug: var=result.stdout.split('\n')
-      when: my_folder.stat.exists == false
+      debug: var=cnt
+
+
+#     - name: '현재 저장된 최소값입니다.'
+#       debug: var=min_cnt
+#       when: "{{ cnt_a }}" > "{{ min_cnt }}"
+
+#       {% if cnt_a > min_cnt%}
+# df -h
+# {% endif %}
+      

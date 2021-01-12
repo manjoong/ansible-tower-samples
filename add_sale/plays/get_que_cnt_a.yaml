@@ -1,6 +1,6 @@
 - name: run python code
-  # hosts: python_a
-  hosts: '{% for item in node %}{{ item }}{% endfor %}'
+  hosts: python_a
+  # hosts: '{% for item in node %}{{ item }}{% endfor %}'
   vars:
     min_cnt: "{{ min_cnt }}"
   
@@ -11,16 +11,12 @@
     
 
     - set_fact:
-        cnt_a: "{{ cnt_a.stdout }}"
+        cnt: "{{ cnt_a.stdout }}"
 
     - name: '결과를 출력합니다.'
-      debug: var=cnt_a
+      debug: var=cnt
 
-    - name: '현재 저장된 최소값입니다.'
-      debug: var=min_cnt
 
-    - set_fact:
-        min_cnt: "{{ cnt_a }}"
 
 #     - name: '현재 저장된 최소값입니다.'
 #       debug: var=min_cnt
