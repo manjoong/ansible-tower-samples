@@ -1,82 +1,31 @@
 - name: run python code
-  hosts: localhost
+  hosts: '{{ hostvars['localhost']['min node'] }}'
   vars:
     stationId: '{{ station_id }}'
     type: '{{ prd_type }}'
     
   tasks:
-    - name: "python_a의 que 값"
-      debug:
-        var: hostvars['python_a']['cnt']
-
-    - set_fact:
-        cnt_a: "{{ hostvars['python_a']['cnt'] }}"
-
-    - name: "딕셔너리 추가"
-      set_fact:
-        nodes: "{{ nodes|default([]) + [ {'node': 'python_a', 'que_len': cnt_a} ] }}"
-
-
-    - name: "python_b의 que 값"
-      debug:
-        var: hostvars['python_b']['cnt']
-
-    - set_fact:
-        cnt_b: "{{ hostvars['python_b']['cnt'] }}"
-
-
-    - name: "딕셔너리 추가"
-      set_fact:
-        nodes: "{{ nodes|default([]) + [ {'node': 'python_b', 'que_len': cnt_b} ] }}"
-
-    - name: "python_c의 que 값"
-      debug:
-        var: hostvars['python_c']['cnt']
-
-    - set_fact:
-        cnt_c: "{{ hostvars['python_c']['cnt'] }}"
-
-    - name: "딕셔너리 추가"
-      set_fact:
-        nodes: "{{ nodes|default([]) + [ {'node': 'python_c', 'que_len': cnt_c} ] }}"
-
-
-    - name: "nodes의 값"
-      debug:
-        var: nodes
-
-    # - name: "python_c의 que 값"
-    #   debug:
-    #     var: '{%max_value = max(nodes, key=nodes.que_len) %}'
-
-    - name: "최솟값을 가진 노드입니다."
-      debug:
-        msg: "{{ (nodes |sort(attribute='que_len'))[0]['node'] }}"
-    
-
-
-# "{% for key, value in dict_item.items() %}Key: {{key}} Value: {{value}}\n{% endfor %}"
-    # - name: check dir
-    #   stat:
-    #     path: '/root/station_list/{{ stationId }}_{{ type }}'
-    #   register: my_folder
+    - name: check dir
+      stat:
+        path: '/root/station_list/{{ stationId }}_{{ type }}'
+      register: my_folder
   
-    # - name: create directory
-    #   shell: 'cp -r /root/station_list/org_code/ /root/station_list/{{ stationId }}_{{ type }}'  
-    #   register: result
-    #   when: my_folder.stat.exists == false
+    - name: create directory
+      shell: 'cp -r /root/station_list/org_code/ /root/station_list/{{ stationId }}_{{ type }}'  
+      register: result
+      when: my_folder.stat.exists == false
     
-    # - name: '결과를 출력합니다.'
-    #   debug: var=result.stdout.split('\n')
-    #   when: my_folder.stat.exists == false
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+      when: my_folder.stat.exists == false
       
-    # - name: run python code
-    #   shell: 'nohup python -u parse_land.py {{ stationId }} {{ type }} > nohup.out 2>&1 &' 
-    #   args: 
-    #     chdir: '/root/station_list/{{ stationId }}_{{ type }}'
-    #   register: result
-    #   when: my_folder.stat.exists == false
+    - name: run python code
+      shell: 'nohup python -u parse_land.py {{ stationId }} {{ type }} > nohup.out 2>&1 &' 
+      args: 
+        chdir: '/root/station_list/{{ stationId }}_{{ type }}'
+      register: result
+      when: my_folder.stat.exists == false
 
-    # - name: '결과를 출력합니다.'
-    #   debug: var=result.stdout.split('\n')
-    #   when: my_folder.stat.exists == false
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+      when: my_folder.stat.exists == false

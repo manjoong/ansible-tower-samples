@@ -2,5 +2,7 @@
 - import_playbook: ./plays/get_que_cnt_b.yaml
 - import_playbook: ./plays/get_que_cnt_c.yaml
 
+- import_playbook: ./plays/select_node.yaml
+
 - import_playbook: ./plays/add_sale.yaml
 
