@@ -1,0 +1,26 @@
+- name: delete_all_code
+  hosts: '{{ node }}'
+  vars:
+    stationId: '{{ station_id }}'
+    type: '{{ prd_type }}'
+    
+  tasks:
+    - name: kill proccess
+      shell: echo $(ps ax | grep "{{ stationId }} {{ type }}" | awk '{print $1}' | xargs kill)
+      register: result
+      ignore_errors: yes
+
+
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+     
+  
+    - name: delete directory 
+      shell: 'rm -rf {{ stationId }}_{{ type }}'  
+      register: result
+      args: 
+        chdir: '/root/station_list'
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
+    
+      
