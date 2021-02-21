@@ -1,5 +1,5 @@
 - name: create_all_process
-  hosts: python_a
+  hosts: python_b
 
   tasks:
     - name: create proccess
