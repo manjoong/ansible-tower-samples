@@ -15,6 +15,14 @@
     - hostvars['python_a']['exists'] == false
     - hostvars['python_b']['exists'] == false
     - hostvars['python_c']['exists'] == false
+
+
+- import_playbook: ./plays/get_que_cnt_e.yaml
+  when:
+    - hostvars['python_a']['exists'] == false
+    - hostvars['python_b']['exists'] == false
+    - hostvars['python_c']['exists'] == false
+    - hostvars['python_d']['exists'] == false
     
 
 - import_playbook: ./plays/select_node.yaml
@@ -23,6 +31,7 @@
     - hostvars['python_b']['exists'] == false
     - hostvars['python_c']['exists'] == false
     - hostvars['python_d']['exists'] == false
+    - hostvars['python_e']['exists'] == false
 
 - import_playbook: ./plays/add_sale.yaml
   when: 
@@ -30,4 +39,5 @@
     - hostvars['python_b']['exists'] == false
     - hostvars['python_c']['exists'] == false
     - hostvars['python_d']['exists'] == false
+    - hostvars['python_e']['exists'] == false
 

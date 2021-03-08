@@ -1,0 +1,27 @@
+- name: run python code
+  hosts: python_e
+  vars:
+    stationId: '{{ station_id }}'
+    type: '{{ prd_type }}'   
+
+  
+  tasks:
+    - name: check dir
+      stat:
+        path: '/root/station_list/{{ stationId }}_{{ type }}'
+      register: my_folder
+  
+    - set_fact:
+        exists: "{{ my_folder.stat.exists }}"
+
+
+    - name: Play cat que len
+      block:
+        - name: get que count
+          shell: 'cat que.txt |wc -l'  
+          register: cnt_e
+
+        - set_fact:
+            cnt: "{{ cnt_e.stdout }}"
+        
+      when: exists == false

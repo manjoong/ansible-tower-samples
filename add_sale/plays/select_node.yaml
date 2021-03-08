@@ -57,6 +57,19 @@
         nodes: "{{ nodes|default([]) + [ {'node': 'python_d', 'que_len': cnt_d|int} ] }}"
 
 
+
+    - name: "python_e의 que 값"
+      debug:
+        var: hostvars['python_e']['cnt']
+
+    - set_fact:
+        cnt_d: "{{ hostvars['python_e']['cnt'] }}"
+
+    - name: "딕셔너리 추가"
+      set_fact:
+        nodes: "{{ nodes|default([]) + [ {'node': 'python_e', 'que_len': cnt_e|int} ] }}"
+
+
     - name: "nodes의 값"
       debug:
         var: nodes
