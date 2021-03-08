@@ -63,7 +63,7 @@
         var: hostvars['python_e']['cnt']
 
     - set_fact:
-        cnt_d: "{{ hostvars['python_e']['cnt'] }}"
+        cnt_e: "{{ hostvars['python_e']['cnt'] }}"
 
     - name: "딕셔너리 추가"
       set_fact:
