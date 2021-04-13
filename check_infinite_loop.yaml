@@ -14,7 +14,7 @@
       debug: var=running_processes.stdout.split('\n')
 
     - set_fact:
-      count: "{{ running_processes.stdout.split('\n') | length }}"
+        count: "{{ running_processes.stdout.split('\n') | length }}"
 
     
     - name: '결과를 출력합니다.'
