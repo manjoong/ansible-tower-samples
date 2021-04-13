@@ -5,16 +5,13 @@
   #   type: '{{ prd_type }}'
     
   tasks:
-    - name: Getting process IDs of the process
-      community.general.pids:
-          name: check_infiniti_loop.py
-      register: pids_of_python
+  - name: Get the PID of running process
+      ignore_errors: yes
+      shell: "ps -few | grep check_infiniti_loop.py | awk '{print $2}'"
+      register: running_processes
 
-    - name: Printing the process IDs obtained
-      ansible.builtin.debug:
-        msg: "PIDS of python:{{pids_of_python.pids|join(',')}}"
-
-
+  - name: '결과를 출력합니다.'
+    debug: var=running_processes.stdout.split('\n')
 
 
 
