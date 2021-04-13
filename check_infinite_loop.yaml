@@ -1,8 +1,6 @@
-- name: delete_all_code
+- name: check/restart infinite loop python code
   hosts: all
-  # vars:
-  #   stationId: '{{ station_id }}'
-  #   type: '{{ prd_type }}'
+
     
   tasks:
     - name: Get the PID of running process
@@ -16,9 +14,19 @@
     - set_fact:
         count: "{{ running_processes.stdout.split('\n') | length }}"
 
-    
+      
     - name: '결과를 출력합니다.'
       debug: var=count
+
+    - name: Play infinite
+      block:
+        - name: restart infinite
+          shell: 'nohup python -u check_infiniti_loop.py > nohup.out 2>&1 &' 
+          register: result
+      when: count <= 2
+
+    - name: '결과를 출력합니다.'
+      debug: var=result.stdout.split('\n')
 
 
 
