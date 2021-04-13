@@ -23,7 +23,7 @@
         - name: restart infinite
           shell: 'nohup python -u check_infiniti_loop.py > nohup.out 2>&1 &' 
           register: result
-      when: count <= 2
+      when: count < 3
 
     - name: '결과를 출력합니다.'
       debug: var=result.stdout.split('\n')
