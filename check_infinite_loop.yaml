@@ -1,0 +1,63 @@
+- name: delete_all_code
+  hosts: all
+  # vars:
+  #   stationId: '{{ station_id }}'
+  #   type: '{{ prd_type }}'
+    
+  tasks:
+    - name: Getting process IDs of the process
+      community.general.pids:
+          name: check_infiniti_loop.py
+      register: pids_of_python
+
+    - name: Printing the process IDs obtained
+      ansible.builtin.debug:
+        msg: "PIDS of python:{{pids_of_python.pids|join(',')}}"
+
+
+
+
+
+
+    # - name: kill proccess
+    #   shell: echo $(ps ax | grep OPST | awk '{print $1}' | xargs kill)
+    #   register: result
+    #   ignore_errors: yes
+    # - name: kill proccess
+    #   shell: echo $(ps ax | grep APT | awk '{print $1}' | xargs kill)
+    #   register: result
+    #   ignore_errors: yes
+    # - name: kill proccess
+    #   shell: echo $(ps ax | grep OR | awk '{print $1}' | xargs kill)
+    #   register: result
+    #   ignore_errors: yes
+
+    # - name: '결과를 출력합니다.'
+    #   debug: var=result.stdout.split('\n')
+     
+  
+    # - name: delete directory OPST
+    #   shell: 'rm -rf *_OPST'  
+    #   register: result
+    #   args: 
+    #     chdir: '/root/station_list'
+    # - name: '결과를 출력합니다.'
+    #   debug: var=result.stdout.split('\n')
+    
+      
+    # - name: delete directory APT
+    #   shell: 'rm -rf *_APT'  
+    #   register: result
+    #   args: 
+    #     chdir: '/root/station_list'
+    # - name: '결과를 출력합니다.'
+    #   debug: var=result.stdout.split('\n')
+      
+    # - name: delete directory OR
+    #   shell: 'rm -rf *_OR'  
+    #   register: result
+    #   args: 
+    #     chdir: '/root/station_list'
+    # - name: '결과를 출력합니다.'
+    #   debug: var=result.stdout.split('\n')
+      
