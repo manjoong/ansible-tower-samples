@@ -6,9 +6,9 @@
     
   tasks:
   - name: Get the PID of running process
-      ignore_errors: yes
-      shell: "ps -few | grep check_infiniti_loop.py | awk '{print $2}'"
-      register: running_processes
+    ignore_errors: yes
+    shell: "ps -few | grep check_infiniti_loop.py | awk '{print $2}'"
+    register: running_processes
 
   - name: '결과를 출력합니다.'
     debug: var=running_processes.stdout.split('\n')
